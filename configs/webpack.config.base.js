@@ -4,7 +4,8 @@
 
 import path from 'path';
 import webpack from 'webpack';
-import { dependencies } from '../package.json';
+import {dependencies} from '../package.json';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 export default {
   externals: [...Object.keys(dependencies || {})],
@@ -20,8 +21,7 @@ export default {
             options: {
               cacheDirectory: true
             }
-          },
-          'ts-loader'
+          }
         ]
       }
     ]
@@ -45,6 +45,7 @@ export default {
       NODE_ENV: 'production'
     }),
 
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new ForkTsCheckerWebpackPlugin()
   ]
 };

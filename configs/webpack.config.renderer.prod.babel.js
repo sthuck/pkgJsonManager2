@@ -11,6 +11,10 @@ import merge from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+
+const srcDir = path.resolve(__dirname, '..', 'app');
+const outDir = path.resolve(__dirname, '..', 'build');
 
 CheckNodeEnv('production');
 export default merge.smart(baseConfig, {
@@ -20,10 +24,10 @@ export default merge.smart(baseConfig, {
 
   target: 'electron-renderer',
 
-  entry: path.join(__dirname, '..', 'app/index'),
+  entry: path.join(srcDir, 'index'),
 
   output: {
-    path: path.join(__dirname, '..', 'app/dist'),
+    path: path.join(outDir, 'dist'),
     publicPath: './dist/',
     filename: 'renderer.prod.js'
   },
@@ -210,6 +214,7 @@ export default merge.smart(baseConfig, {
       analyzerMode:
         process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
       openAnalyzer: process.env.OPEN_ANALYZER === 'true'
-    })
+    }),
+    new CopyWebpackPlugin([{from: path.resolve(srcDir, 'app.html'), to: path.resolve(outDir, 'app.html')} ])
   ]
 });

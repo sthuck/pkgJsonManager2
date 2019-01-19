@@ -1,0 +1,12 @@
+{
+  "extends": ["tslint:recommended", "tslint-consistent-codestyle", "tslint-config-prettier", "tslint-plugin-prettier"],
+  "rules": {
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "prettier": true
+  },
+  "linterOptions": {
+    "format": "verbose"
+  },
+  "format": "verbose"
+}

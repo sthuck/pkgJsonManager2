@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "baseUrl": "./",
     "rootDir": "./",
     "jsx": "react",
@@ -9,8 +9,12 @@
     "noUnusedLocals": true,
     "pretty": true,
     "sourceMap": true,
+    "strict": true,
     "resolveJsonModule": true,
-    "lib": ["es2015", "dom"]
+    "noEmit": true,
+    "skipLibCheck": true,
+    "lib": ["es2017", "dom"]
   },
+  "files": ["./app/index.tsx", "./app/main.dev.ts", "./app/types/global.d.ts"],
   "exclude": ["node_modules", "**/node_modules/*"]
 }

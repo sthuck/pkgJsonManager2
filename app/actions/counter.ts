@@ -1,3 +1,5 @@
+import {Dispatch} from 'redux';
+import {GlboalState} from 'app/reducers';
 export enum CounterTypeKeys {
   INCREMENT_COUNTER = 'INCREMENT_COUNTER',
   DECREMENT_COUNTER = 'DECREMENT_COUNTER'
@@ -26,7 +28,7 @@ export function decrement() {
 }
 
 export function incrementIfOdd() {
-  return (dispatch, getState) => {
+  return (dispatch: Dispatch , getState: () => Pick<GlboalState, 'counter'>) => {
     const { counter } = getState();
 
     if (counter % 2 === 0) {
@@ -38,7 +40,7 @@ export function incrementIfOdd() {
 }
 
 export function incrementAsync(delay: number = 1000) {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     setTimeout(() => {
       dispatch(increment());
     }, delay);

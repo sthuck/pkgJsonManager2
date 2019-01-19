@@ -1,6 +1,7 @@
 import { spy } from 'sinon';
 import * as React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import * as Enzyme from 'enzyme';
+import { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';

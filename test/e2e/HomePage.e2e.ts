@@ -5,26 +5,26 @@ import { getPageUrl } from './helpers';
 const getPageTitle = ClientFunction(() => document.title);
 const counterSelector = Selector('[data-tid="counter"]');
 const buttonsSelector = Selector('[data-tclass="btn"]');
-const clickToCounterLink = t =>
+const clickToCounterLink = (t: TestController) =>
   t.click(Selector('a').withExactText('to Counter'));
 const incrementButton = buttonsSelector.nth(0);
 const decrementButton = buttonsSelector.nth(1);
 const oddButton = buttonsSelector.nth(2);
 const asyncButton = buttonsSelector.nth(3);
 const getCounterText = () => counterSelector().innerText;
-const assertNoConsoleErrors = async t => {
+const assertNoConsoleErrors = async (t: TestController) => {
   const { error } = await t.getBrowserConsoleMessages();
   await t.expect(error).eql([]);
 };
 
-fixture`Home Page`.page('../../app/app.html').afterEach(assertNoConsoleErrors);
+fixture`Home Page`.page('../../build/app.html').afterEach(assertNoConsoleErrors);
 
 test('e2e', async t => {
-  await t.expect(getPageTitle()).eql('Hello Electron React!');
+  await t.expect(getPageTitle()).eql('PkgJsonManager');
 });
 
 test('should open window', async t => {
-  await t.expect(getPageTitle()).eql('Hello Electron React!');
+  await t.expect(getPageTitle()).eql('PkgJsonManager');
 });
 
 test(
@@ -52,7 +52,7 @@ test('should navgiate to /counter', async t => {
 });
 
 fixture`Counter Tests`
-  .page('../../app/app.html')
+  .page('../../build/app.html')
   .beforeEach(clickToCounterLink)
   .afterEach(assertNoConsoleErrors);
 

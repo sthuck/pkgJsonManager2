@@ -21,7 +21,7 @@ export default class AppUpdater {
   }
 }
 
-let mainWindow = null;
+let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -52,7 +52,7 @@ const installExtensions = async () => {
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
-  if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin' || process.env.NODE_ENV === 'development') {
     app.quit();
   }
 });
@@ -94,7 +94,5 @@ app.on('ready', async () => {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
   new AppUpdater();
 });
