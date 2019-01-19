@@ -4,7 +4,7 @@ const routes = require('./constants/routes.json');
 import App from './containers/App';
 import HomePage from './containers/HomePage';
 import CounterPage from './containers/CounterPage';
-
+/* foo */
 export default () => (
   <App>
     <Switch>

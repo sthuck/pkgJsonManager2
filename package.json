@@ -34,20 +34,9 @@
     "test-watch": "yarn test --watch"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "NODE_ENV=development tslint -p . -t verbose",
-      "prettier --write",
-      "git add"
-    ],
-    "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [
-      "prettier --parser json --write",
-      "git add"
-    ],
-    "*.{css,scss}": [
-      "stylelint --syntax scss --fix",
-      "prettier  --single-quote --write",
-      "git add"
-    ],
+    "*.{js,jsx}": ["tslint -p . -t verbose", "git add"],
+    "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": ["prettier --parser json --write", "git add"],
+    "*.{css,scss}": ["stylelint --syntax scss --fix", "prettier  --single-quote --write", "git add"],
     "*.{yml,md}": ["prettier --write", "git add"]
   },
   "main": "./build/main.prod.js",
