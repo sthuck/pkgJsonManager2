@@ -1,5 +1,5 @@
-import { bindActionCreators, Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
+import {connect} from 'react-redux';
 import Counter from '../components/Counter';
 import CounterActions from '../actions/counter';
 
@@ -9,7 +9,7 @@ export interface CounterState {
 
 function mapStateToProps(state: CounterState) {
   return {
-    counter: state.counter
+    counter: state.counter,
   };
 }
 

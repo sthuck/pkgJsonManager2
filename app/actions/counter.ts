@@ -2,7 +2,7 @@ import {Dispatch} from 'redux';
 import {GlboalState} from 'app/reducers';
 export enum CounterTypeKeys {
   INCREMENT_COUNTER = 'INCREMENT_COUNTER',
-  DECREMENT_COUNTER = 'DECREMENT_COUNTER'
+  DECREMENT_COUNTER = 'DECREMENT_COUNTER',
 }
 
 interface IncrementAction {
@@ -17,19 +17,19 @@ export type CounterTypes = IncrementAction | DecrementAction;
 
 export function increment() {
   return {
-    type: CounterTypeKeys.INCREMENT_COUNTER
+    type: CounterTypeKeys.INCREMENT_COUNTER,
   };
 }
 
 export function decrement() {
   return {
-    type: CounterTypeKeys.DECREMENT_COUNTER
+    type: CounterTypeKeys.DECREMENT_COUNTER,
   };
 }
 
 export function incrementIfOdd() {
-  return (dispatch: Dispatch , getState: () => Pick<GlboalState, 'counter'>) => {
-    const { counter } = getState();
+  return (dispatch: Dispatch, getState: () => Pick<GlboalState, 'counter'>) => {
+    const {counter} = getState();
 
     if (counter % 2 === 0) {
       return;
@@ -47,4 +47,4 @@ export function incrementAsync(delay: number = 1000) {
   };
 }
 
-export default { increment, decrement, incrementIfOdd, incrementAsync };
+export default {increment, decrement, incrementIfOdd, incrementAsync};

@@ -22,7 +22,6 @@
     "postinstall": "electron-builder install-app-deps package.json && yarn build-dll && opencollective-postinstall",
     "postlint-fix": "prettier --single-quote --write 'app/**/*.{*{js,jsx,json},babelrc,eslintrc,prettierrc,stylelintrc}'",
     "postlint-styles-fix": "prettier --single-quote --write 'app/**/*.{css,scss}'",
-    "precommit": "lint-staged",
     "prestart": "yarn build",
     "start": "NODE_ENV=production electron ./build/main.prod.js",
     "start-main-dev": "HOT=1 NODE_ENV=development electron ./app/main.dev.babel.js",
@@ -33,17 +32,17 @@
     "test-e2e-live": "node -r @babel/register ./internals/scripts/CheckBuiltsExist.js && NODE_ENV=test testcafe-live electron:./ ./test/e2e/HomePage.e2e.ts",
     "test-watch": "yarn test --watch"
   },
-  "lint-staged": {
-    "*.{js,jsx}": ["tslint -p . -t verbose", "git add"],
-    "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": ["prettier --parser json --write", "git add"],
-    "*.{css,scss}": ["stylelint --syntax scss --fix", "prettier  --single-quote --write", "git add"],
-    "*.{yml,md}": ["prettier --write", "git add"]
-  },
   "main": "./build/main.prod.js",
   "build": {
     "productName": "ElectronReact",
     "appId": "org.develar.ElectronReact",
-    "files": ["build/dist/", "app/app.html", "build/main.prod.js", "build/main.prod.js.map", "package.json"],
+    "files": [
+      "build/dist/",
+      "app/app.html",
+      "build/main.prod.js",
+      "build/main.prod.js.map",
+      "package.json"
+    ],
     "dmg": {
       "contents": [
         {
@@ -59,10 +58,18 @@
       ]
     },
     "win": {
-      "target": ["nsis", "msi"]
+      "target": [
+        "nsis",
+        "msi"
+      ]
     },
     "linux": {
-      "target": ["deb", "rpm", "snap", "AppImage"],
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ],
       "category": "Development"
     },
     "directories": {
@@ -97,12 +104,19 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",
       "\\.(css|less|sass|scss)$": "identity-obj-proxy"
     },
-    "moduleFileExtensions": ["js", "ts", "tsx", "json"],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx",
+      "json"
+    ],
     "transform": {
       "^.+\\.[jt]sx?$": "babel-jest"
     },
     "testRegex": "test/.*(spec|test).(ts|tsx|js)$",
-    "setupFiles": ["./internals/scripts/CheckBuiltsExist.js"]
+    "setupFiles": [
+      "./internals/scripts/CheckBuiltsExist.js"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -119,6 +133,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
     "@babel/register": "^7.0.0",
+    "@types/classnames": "^2.2.7",
     "@types/enzyme": "^3.1.15",
     "@types/jest": "^23.3.11",
     "@types/react": "^16.7.18",
@@ -188,6 +203,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
+    "@material-ui/core": "^3.9.0",
+    "@material-ui/icons": "^3.0.2",
+    "classnames": "^2.2.6",
     "devtron": "^1.4.0",
     "electron-debug": "^2.0.0",
     "electron-log": "^2.2.17",

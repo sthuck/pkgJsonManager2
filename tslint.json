@@ -3,7 +3,12 @@
   "rules": {
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "prettier": true
+    "prettier": true,
+    "no-var-requires": {"severity": "warn"},
+    "interface-name": false,
+    "no-console": false,
+    "no-empty-interface": false,
+    "member-access": false
   },
   "linterOptions": {
     "format": "verbose"
